@@ -1,0 +1,28 @@
+server:
+  port: 9527
+eureka:
+  client:
+    service-url:
+     defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: zuul-gateway
+spring:
+  application:
+    name: zuul-gateway
+  redis:
+    host: 192.168.25.128
+    port: 6379
+    jedis:
+      pool:
+        min-idle: 3
+        max-active: 8
+    timeout: 5000
+zuul:
+  routes:
+     resource-server:
+        path: /resource/**
+        serviceId: resource-server
+        #strip-prefix: true #代理转发时不去掉前缀
+        #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
+        sensitiveHeaders:

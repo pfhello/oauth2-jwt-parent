@@ -1,0 +1,12 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: resource-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: resource-server
+    prefer-ip-address: true
